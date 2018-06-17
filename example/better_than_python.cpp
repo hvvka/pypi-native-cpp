@@ -1,25 +1,20 @@
 #include <Python.h>
 
+
 static PyObject* factorial(PyObject *self, PyObject* o)
 {
     double x = PyFloat_AsDouble(o);
     int number = (int) x;
-//    double result = (double) count_factorial(number);
-    double result = 2.0;
+    double result = 1;
+
+    for(int i = 1; i <= number; ++i)
+    {
+        result *= i;
+    }
+
     return PyFloat_FromDouble(result);
 }
 
-int count_factorial(int number)
-{
-    if (number == 1 || number == 2)
-    {
-        return 1;
-    }
-    else
-    {
-        return number * count_factorial(number--);
-    }
-}
 
 static PyMethodDef better_than_python_methods[] = {
     // The first property is the name exposed to Python, fast_tanh, the second is the C++
@@ -30,6 +25,7 @@ static PyMethodDef better_than_python_methods[] = {
     { NULL, NULL, 0, NULL }
 };
 
+
 static struct PyModuleDef better_than_python_module = {
     PyModuleDef_HEAD_INIT,
     "better_than_python",                        // Module name to use with Python import statements
@@ -37,6 +33,7 @@ static struct PyModuleDef better_than_python_module = {
     -1,  /// global
     better_than_python_methods                   // Structure that defines the methods of the module
 };
+
 
 PyMODINIT_FUNC PyInit_better_than_python(void) {
     return PyModule_Create(&better_than_python_module);

@@ -1,3 +1,4 @@
+import better_than_python
 
 
 def factorial(number):
@@ -8,10 +9,8 @@ def factorial(number):
     """
     if not isinstance(number, int):
         raise Exception('Enter an integer number to find the factorial')
-    if number == 1 or number == 2:
-        return 1
-    else:
-        return number * factorial(number - 1)
+
+    return int(better_than_python.factorial(number))
 
 
 def is_palindrome(string):
@@ -27,5 +26,5 @@ def is_palindrome(string):
 
 
 if __name__ == '__main__':
-    print(factorial(10))
-    print(is_palindrome("dppd"))
+    number = input("Enter number: ")
+    print(factorial(int(number)))
