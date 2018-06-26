@@ -4,10 +4,10 @@
 static PyObject* factorial(PyObject *self, PyObject* o)
 {
     double x = PyFloat_AsDouble(o);
-    int number = (int) x;
-    double result = 1;
+    int number = static_cast<int>(x);
+    double result = 1.0;
 
-    for(int i = 1; i <= number; ++i)
+    for (auto i = 1; i <= number; ++i)
     {
         result *= i;
     }
@@ -28,10 +28,10 @@ static PyMethodDef better_than_python_methods[] = {
 
 static struct PyModuleDef better_than_python_module = {
     PyModuleDef_HEAD_INIT,
-    "better_than_python",                        // Module name to use with Python import statements
+    "better_than_python",                   // Module name to use with Python import statements
     "Provides some functions, but faster",  // Module description
-    -1,  /// global
-    better_than_python_methods                   // Structure that defines the methods of the module
+    -1,                                     // global
+    better_than_python_methods              // Structure that defines the methods of the module
 };
 
 
